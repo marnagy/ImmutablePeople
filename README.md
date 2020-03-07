@@ -1,5 +1,7 @@
 # Immutable People
 
+-------------------
+
 ## Needed classes:
 
 - [ ] Person (abstract)
