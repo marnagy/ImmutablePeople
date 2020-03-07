@@ -4,11 +4,15 @@ using System.Text;
 
 namespace ImmutablePeople
 {
-    public abstract class PersonG<T> where T: PersonG<T>
+    public abstract class Person
     {
-        public string FirstName {get; private set;}
-        public string LastName {get; private set;}
-        public string Password {get; private set;}
+        public string FirstName {get; protected set;}
+        public string LastName {get; protected set;}
+        public string Password {get; protected set;}
+    }
+    public abstract class PersonG<T> : Person where T: PersonG<T>, new()
+    {
+        
         protected T WithFirstName(string firstName)
         {
             this.FirstName = firstName;
@@ -30,9 +34,7 @@ namespace ImmutablePeople
             return (T) this;
         }
     }
-    public abstract class Person : PersonG<Person>
-    {
-    }
+
     public class Student : PersonG<Student>
     {
         public DateTime DateEnrolled { get; private set;}
