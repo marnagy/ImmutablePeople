@@ -13,16 +13,22 @@ namespace ImmutablePeople
                 Console.WriteLine(person + " has password \"" + person.Password + "\"");
             }
         }
-        public static void WithPasswordResetByFirstName(this List<Person> people, string firstName, string newPassword)
+        public static List<Person> WithPasswordResetByFirstName(this List<Person> people, string firstName, string newPassword)
         {
             var updated = new List<Person>();
-            foreach (var person in people)
+            foreach (Person person in people)
             {
                 if (person.FirstName == firstName)
                 {
-                    person.
+
+                    updated.Add( person.WithPassword("newPassword") );
+                }
+                else
+                {
+                    updated.Add(person);
                 }
             }
+            return updated;
         }
     }
 }

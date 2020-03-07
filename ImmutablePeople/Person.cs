@@ -6,36 +6,36 @@ namespace ImmutablePeople
 {
     public abstract class Person
     {
-        public string FirstName {get; protected set;}
-        public string LastName {get; protected set;}
-        public string Password {get; protected set;}
+        public string FirstName {get; set;}
+        public string LastName {get; set;}
+        public string Password {get; set;}
+        //protected T WithFirstName<T>(string firstName) where T: Person
+        //{
+        //    this.FirstName = firstName;
+        //    return (T) this;
+        //}
+        //protected T WithLastName<T>(string lastName) where T: Person
+        //{
+        //    this.LastName = lastName;
+        //    return (T) this;
+        //}
+        //public T WithName<T>(string fullName) where T: Person
+        //{
+        //    string[] nameParts = fullName.Split(' ');
+        //    return this.WithFirstName<T>(nameParts[0]).WithLastName<T>(nameParts[1]);
+        //}
+        //public T WithPassword<T>(string passwd) where T: Person
+        //{
+        //    this.Password = passwd;
+        //    return (T) this;
+        //}
     }
-    public abstract class PersonG<T> : Person where T: PersonG<T>, new()
+    public abstract class Person<T> : Person where T: Person<T>, new()
     {
         
-        protected T WithFirstName(string firstName)
-        {
-            this.FirstName = firstName;
-            return (T) this;
-        }
-        protected T WithLastName(string lastName)
-        {
-            this.LastName = lastName;
-            return (T) this;
-        }
-        public T WithName(string fullName)
-        {
-            string[] nameParts = fullName.Split(' ');
-            return this.WithFirstName(nameParts[0]).WithLastName(nameParts[1]);
-        }
-        public T WithPassword(string passwd)
-        {
-            this.Password = passwd;
-            return (T) this;
-        }
     }
 
-    public class Student : PersonG<Student>
+    public class Student : Person<Student>
     {
         public DateTime DateEnrolled { get; private set;}
         public static Student Default => new Student();
@@ -49,7 +49,7 @@ namespace ImmutablePeople
             return "Student " + FirstName + " " + LastName;
         }
     }
-    public class Teacher : PersonG<Teacher>
+    public class Teacher : Person<Teacher>
     {
         public int Coureses { get; private set;}
         public static Teacher Default => new Teacher();
