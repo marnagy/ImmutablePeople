@@ -21,7 +21,7 @@ namespace ImmutablePeople
                 if (person.FirstName == firstName)
                 {
 
-                    updated.Add( person.WithPassword("newPassword") );
+                    updated.Add( person.WithPasswordP(newPassword) );
                 }
                 else
                 {
