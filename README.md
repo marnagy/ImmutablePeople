@@ -4,22 +4,29 @@
 
 ## Needed classes:
 
-- [ ] Person (abstract)
+- [x] Person (abstract)
 
-- [ ] Student
+- [x] Student
 
-- [ ] Teacher
+- [x] Teacher
 
 ### Person Methods
 
-- [ ] WithName
-- [ ] WithPassword
+- [ ] WithNameP
+- [ ] WithPasswordP
+
+### GenericMethods
+
+- [x] WithName
+- [x] WithPassword
 
 ### Student methods
 
-- [ ] WithDateEnrolled
+- [x] WithDateEnrolled
+- [x] override Equals
 ### Teacher methods
-- [ ] WithCoursesHeld
+- [x] WithCoursesHeld
+- [x] override Equals
 
 ### Extension methods for List of People
 

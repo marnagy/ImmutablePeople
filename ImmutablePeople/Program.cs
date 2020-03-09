@@ -16,7 +16,7 @@ namespace ImmutablePeople {
 			var teacher = Teacher.Default
 							.WithName("Pavel Jezek").WithPassword("stul")
 							.WithCoursesHeld(5);
-
+			
 			List<Person> people = new List<Person> { studentA, studentB, teacher };
 			Console.WriteLine("+++ People:");
 			people.PrintAll();

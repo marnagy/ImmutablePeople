@@ -6,14 +6,6 @@ namespace ImmutablePeople
 {
     public abstract class Person
     {
-        protected Person()
-        {
-
-        }
-        protected Person(string firstName, string lastName, string password)
-        {
-
-        }
         public string FirstName {get; protected set;}
         public string LastName {get; protected set;}
         public string Password {get; protected set;}
@@ -44,7 +36,7 @@ namespace ImmutablePeople
             this.DateEnrolled = dateEnrolled;
         }
         public DateTime DateEnrolled { get;}
-        public static Student Default => new Student("", "", "", DateTime.Now);
+        public static Student Default => new Student("", "", "", DateTime.Today);
         public Student WithDateEnrolled(DateTime dateEnrolled)
         {
             return new Student(this.FirstName, this.LastName, this.Password, dateEnrolled);
@@ -53,6 +45,7 @@ namespace ImmutablePeople
         public override Student WithName(string fullName) 
         {
             string[] nameParts = fullName.Split(' ');
+            if (nameParts.Length != 2) throw new ArgumentException("Invalid name format.");
             return new Student(nameParts[0], nameParts[1], this.Password, this.DateEnrolled);
         }
         public override Student WithPassword(string passwd)
@@ -62,6 +55,21 @@ namespace ImmutablePeople
         public override string ToString()
         {
             return "Student " + FirstName + " " + LastName;
+        }
+        public override bool Equals(object obj)
+        {
+            bool res = false;
+            Student s = obj as Student;
+            if ( s != null){
+                if (this.FirstName == s.FirstName &&
+                    this.LastName == s.LastName &&
+                    this.Password == s.Password &&
+                    this.DateEnrolled == s.DateEnrolled)
+                {
+                    res = true;
+                }
+            }
+            return res;
         }
     }
     public class Teacher : Person<Teacher>
@@ -79,10 +87,6 @@ namespace ImmutablePeople
         {
             return new Teacher(this.FirstName, this.LastName, this.Password, coursesAmount);
         }
-        public override string ToString()
-        {
-            return "Teacher " + FirstName + " " + LastName;
-        }
 
         public override Teacher WithName(string fullName)
         {
@@ -93,6 +97,25 @@ namespace ImmutablePeople
         public override Teacher WithPassword(string passwd)
         {
             return new Teacher(this.FirstName, this.LastName, passwd, this.Courses);
+        }
+        public override string ToString()
+        {
+            return "Teacher " + FirstName + " " + LastName;
+        }
+        public override bool Equals(object obj)
+        {
+            bool res = false;
+            Teacher t = obj as Teacher;
+            if ( t != null){
+                if (this.FirstName == t.FirstName &&
+                    this.LastName == t.LastName &&
+                    this.Password == t.Password &&
+                    this.Courses == t.Courses)
+                {
+                    res = true;
+                }
+            }
+            return res;
         }
     }
 }
