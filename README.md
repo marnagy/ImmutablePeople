@@ -2,6 +2,13 @@
 
 -------------------
 
+## Idea of solution
+
+* Person -> Person<T> -> Student or Teacher
+
+* Person will have specific methods close to WithName and WithPassword, which will only point to their actual virtual method in Person<T>
+* Both Person **and** Person<T> are abstract classes to ensure all children need to have methods WithPassword and WithName implemented
+
 ## Needed classes:
 
 - [x] Person (abstract)
@@ -12,8 +19,8 @@
 
 ### Person Methods
 
-- [ ] WithNameP
-- [ ] WithPasswordP
+- [x] WithNameP
+- [x] WithPasswordP
 
 ### GenericMethods
 
@@ -30,5 +37,5 @@
 
 ### Extension methods for List of People
 
-- [ ] PrintAll
-- [ ] WithPasswordResetByFirstName
+- [x] PrintAll (not tested)
+- [x] WithPasswordResetByFirstName (not tested)
